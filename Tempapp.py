@@ -10,7 +10,7 @@ st.set_page_config(
     layout="wide"
 )
 
-st.title("ΔT₍c₎ Calculator")
+st.title("ΔTc Calculator")
 st.markdown("This app calculates the contact temperature rise (ΔT) based on your input parameters.")
 
 # -----------------------------
@@ -18,25 +18,19 @@ st.markdown("This app calculates the contact temperature rise (ΔT) based on you
 # -----------------------------
 st.sidebar.header("Input Parameters (SI units)")
 
-# Remove limits for friction and force
+# No limits for friction and normal force
 mu = st.sidebar.number_input("Friction coefficient μ [-]", value=0.1, step=0.01, format="%.3f")
 Fn = st.sidebar.number_input("Normal force Fₙ [N]", value=100.0, step=1.0, format="%.2f")
 
-# Updated ranges based on your specifications
+# Sliders with limits converted to meters
 v = st.sidebar.slider("Sliding velocity v [m/s]", 0.25, 1.0, 0.25, 0.01)
-r = st.sidebar.slider("Sliding radius r [mm]", 9.0, 19.0, 9.0, 0.1)
-r_d = st.sidebar.slider("Steel disc radius r_d [mm]", 25.0, 60.0, 25.0, 0.5)
-b = st.sidebar.slider("Steel disc thickness b [mm]", 5.0, 15.0, 5.0, 0.5)
-b_PTFE = st.sidebar.slider("PTFE thickness b_PTFE [mm]", 5.0, 15.0, 5.0, 0.5)
-
-# Convert mm to meters for calculation
-r /= 1000
-r_d /= 1000
-b /= 1000
-b_PTFE /= 1000
+r = st.sidebar.slider("Sliding radius r [m]", 0.009, 0.019, 0.009, 0.001)
+r_d = st.sidebar.slider("Steel disc radius r_d [m]", 0.025, 0.060, 0.025, 0.001)
+b = st.sidebar.slider("Steel disc thickness b [m]", 0.005, 0.015, 0.005, 0.001)
+b_PTFE = st.sidebar.slider("PTFE thickness b_PTFE [m]", 0.005, 0.015, 0.005, 0.001)
 
 st.sidebar.markdown("---")
-st.sidebar.markdown("Made by Shoaib - Tribology Calculator")
+st.sidebar.markdown("Contact temperature calculator for poly-steel")
 
 # -----------------------------
 # ΔT calculation function
@@ -47,12 +41,12 @@ def calc_delta_Tc(mu, Fn, v, r, r_d, b, b_PTFE):
 # -----------------------------
 # Main calculation
 # -----------------------------
-if st.sidebar.button("Calculate ΔT₍c₎"):
+if st.sidebar.button("Calculate ΔTc"):
     if 0 in [Fn, v, r, r_d, b, b_PTFE]:
         st.error("All input values must be greater than zero.")
     else:
         delta_Tc = calc_delta_Tc(mu, Fn, v, r, r_d, b, b_PTFE)
-        st.success(f"### ΔT₍c₎ = {delta_Tc:.2f} °C")
+        st.success(f"### ΔTc = {delta_Tc:.2f} °C")
 
         # -----------------------------
         # Tabs for outputs
@@ -94,10 +88,10 @@ if st.sidebar.button("Calculate ΔT₍c₎"):
                 "μ": [mu],
                 "Fₙ [N]": [Fn],
                 "v [m/s]": [v],
-                "r [mm]": [r*1000],
-                "r_d [mm]": [r_d*1000],
-                "b [mm]": [b*1000],
-                "b_PTFE [mm]": [b_PTFE*1000],
+                "r [m]": [r],
+                "r_d [m]": [r_d],
+                "b [m]": [b],
+                "b_PTFE [m]": [b_PTFE],
                 "ΔT [°C]": [delta_Tc]
             })
             csv = df_csv.to_csv(index=False).encode('utf-8')
@@ -109,6 +103,8 @@ st.markdown(
 **Mobile tip:** Open this page in your phone browser → Add to Home Screen → works like a real app.
 """
 )
+
+
 
 
 
