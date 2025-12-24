@@ -49,7 +49,7 @@ r = st.sidebar.number_input(
     max_value=0.019, 
     value=0.009, 
     step=0.001, 
-    format="%.3f"
+    format="%.4f"
 )
 r_d = st.sidebar.number_input(
     "Steel disc radius r_d [m]", 
@@ -133,6 +133,7 @@ st.markdown(
 **Mobile tip:** Open this page in your phone browser → Add to Home Screen → works like a real app 🚀
 """
 )
+
 
 
 
