@@ -69,7 +69,7 @@ b = st.sidebar.number_input(
 )
 b_PTFE = st.sidebar.number_input(
     "PTFE thickness b_PTFE [m]", 
-    min_value=0.005, 
+    min_value=0.000, 
     max_value=0.015, 
     value=0.005, 
     step=0.001, 
@@ -133,6 +133,7 @@ st.markdown(
 **Mobile tip:** Open this page in your phone browser → Add to Home Screen → works like a real app 🚀
 """
 )
+
 
 
 
