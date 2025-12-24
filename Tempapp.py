@@ -25,11 +25,11 @@ with st.sidebar.expander("Input Parameters (SI units)", expanded=True):
                          help="Coefficient of friction (no limit)")
     Fn = st.number_input("Normal force Fₙ [N]", value=100.0, step=1.0, format="%.2f",
                          help="Force applied on the interface (no limit)")
-    v = st.slider("Sliding velocity v [m/s]", 0.25, 1.0, 0.25, 0.01)
-    r = st.slider("Sliding radius r [m]", 0.009, 0.019, 0.009, 0.001)
-    r_d = st.slider("Steel disc radius r_d [m]", 0.025, 0.060, 0.025, 0.001)
-    b = st.slider("Steel disc thickness b [m]", 0.005, 0.015, 0.005, 0.001)
-    b_PTFE = st.slider("PTFE thickness b_PTFE [m]", 0.005, 0.015, 0.005, 0.001)
+    v = st.number_input("Sliding velocity v [m/s]", 0.25, 1.0, 0.25, 0.01)
+    r = st.number_input("Sliding radius r [m]", 0.009, 0.019, 0.009, 0.001)
+    r_d = st.number_input("Steel disc radius r_d [m]", 0.025, 0.060, 0.025, 0.001)
+    b = st.number_input("Steel disc thickness b [m]", 0.005, 0.015, 0.005, 0.001)
+    b_PTFE = st.number_input("PTFE thickness b_PTFE [m]", 0.005, 0.015, 0.005, 0.001)
 
 st.sidebar.markdown("---")
 st.sidebar.markdown("Polymer-steel contact temperature calculator 🚀")
@@ -104,6 +104,7 @@ st.markdown(
 **Mobile tip:** Open this page in your phone browser → Add to Home Screen → works like a real app 🚀
 """
 )
+
 
 
 
