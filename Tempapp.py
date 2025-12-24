@@ -10,7 +10,7 @@ st.set_page_config(
     layout="wide"
 )
 
-st.title("ΔTc Calculator")
+st.title("ΔT₍c₎ Calculator")
 st.markdown("This app calculates the contact temperature rise (ΔT) based on your input parameters.")
 
 # -----------------------------
@@ -18,14 +18,22 @@ st.markdown("This app calculates the contact temperature rise (ΔT) based on you
 # -----------------------------
 st.sidebar.header("Input Parameters (SI units)")
 
-mu = st.sidebar.number_input("Friction coefficient μ [-]", 0.0, 1.0, 0.1, 0.01)
-Fn = st.sidebar.number_input("Normal force Fₙ [N]", 0.0, 10000.0, 100.0, 1.0)
-v = st.sidebar.number_input("Sliding velocity v [m/s]", 0.0, 10.0, 0.1, 0.01)
+# Remove limits for friction and force
+mu = st.sidebar.number_input("Friction coefficient μ [-]", value=0.1, step=0.01, format="%.3f")
+Fn = st.sidebar.number_input("Normal force Fₙ [N]", value=100.0, step=1.0, format="%.2f")
 
-r = st.sidebar.number_input("Sliding radius r [m]", 0.001, 0.1, 0.01, 0.001)
-r_d = st.sidebar.number_input("Steel disc radius r_d [m]", 0.001, 0.1, 0.01, 0.001)
-b = st.sidebar.number_input("Steel disc thickness b [m]", 0.001, 0.05, 0.005, 0.001)
-b_PTFE = st.sidebar.number_input("PTFE thickness b_PTFE [m]", 0.0005, 0.01, 0.001, 0.0005)
+# Updated ranges based on your specifications
+v = st.sidebar.slider("Sliding velocity v [m/s]", 0.25, 1.0, 0.25, 0.01)
+r = st.sidebar.slider("Sliding radius r [mm]", 9.0, 19.0, 9.0, 0.1)
+r_d = st.sidebar.slider("Steel disc radius r_d [mm]", 25.0, 60.0, 25.0, 0.5)
+b = st.sidebar.slider("Steel disc thickness b [mm]", 5.0, 15.0, 5.0, 0.5)
+b_PTFE = st.sidebar.slider("PTFE thickness b_PTFE [mm]", 5.0, 15.0, 5.0, 0.5)
+
+# Convert mm to meters for calculation
+r /= 1000
+r_d /= 1000
+b /= 1000
+b_PTFE /= 1000
 
 st.sidebar.markdown("---")
 st.sidebar.markdown("Made by Shoaib - Tribology Calculator")
@@ -53,7 +61,7 @@ if st.sidebar.button("Calculate ΔT₍c₎"):
 
         # ΔT vs Velocity
         with tabs[0]:
-            v_range = np.linspace(v*0.1, v*5, 50)
+            v_range = np.linspace(v*0.25, v*1.0, 50)
             delta_v = [calc_delta_Tc(mu, Fn, vi, r, r_d, b, b_PTFE) for vi in v_range]
             df_v = pd.DataFrame({"Velocity [m/s]": v_range, "ΔT [°C]": delta_v}).set_index("Velocity [m/s]")
             st.line_chart(df_v)
@@ -67,8 +75,8 @@ if st.sidebar.button("Calculate ΔT₍c₎"):
 
         # Heatmap: ΔT vs Fn and v
         with tabs[2]:
-            v_grid = np.linspace(v*0.5, v*2, 25)
-            Fn_grid = np.linspace(Fn*0.5, Fn*2, 25)
+            v_grid = np.linspace(v*0.25, v*1.0, 25)
+            Fn_grid = np.linspace(Fn*0.1, Fn*5, 25)
             heatmap = np.zeros((len(Fn_grid), len(v_grid)))
             for i, Fni in enumerate(Fn_grid):
                 for j, vj in enumerate(v_grid):
@@ -86,10 +94,10 @@ if st.sidebar.button("Calculate ΔT₍c₎"):
                 "μ": [mu],
                 "Fₙ [N]": [Fn],
                 "v [m/s]": [v],
-                "r [m]": [r],
-                "r_d [m]": [r_d],
-                "b [m]": [b],
-                "b_PTFE [m]": [b_PTFE],
+                "r [mm]": [r*1000],
+                "r_d [mm]": [r_d*1000],
+                "b [mm]": [b*1000],
+                "b_PTFE [mm]": [b_PTFE*1000],
                 "ΔT [°C]": [delta_Tc]
             })
             csv = df_csv.to_csv(index=False).encode('utf-8')
@@ -101,6 +109,8 @@ st.markdown(
 **Mobile tip:** Open this page in your phone browser → Add to Home Screen → works like a real app.
 """
 )
+
+
 
 
 
