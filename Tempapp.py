@@ -11,7 +11,7 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
-st.markdown("<h1 style='text-align: center; color: darkblue;'>🔥 ΔT₍c₎ Calculator</h1>", unsafe_allow_html=True)
+st.markdown("<h1 style='text-align: center; color: darkblue;'>🔥 ΔTc Calculator</h1>", unsafe_allow_html=True)
 st.markdown(
     "<p style='text-align: center;'>Calculate contact temperature rise based on friction, force, velocity and geometry.</p>", 
     unsafe_allow_html=True
@@ -20,7 +20,7 @@ st.markdown(
 # -----------------------------
 # Sidebar Inputs with expanders
 # -----------------------------
-with st.sidebar.expander("⚙️ Input Parameters (SI units)", expanded=True):
+with st.sidebar.expander("Input Parameters (SI units)", expanded=True):
     mu = st.number_input("Friction coefficient μ [-]", value=0.1, step=0.01, format="%.3f",
                          help="Coefficient of friction (no limit)")
     Fn = st.number_input("Normal force Fₙ [N]", value=100.0, step=1.0, format="%.2f",
@@ -32,7 +32,7 @@ with st.sidebar.expander("⚙️ Input Parameters (SI units)", expanded=True):
     b_PTFE = st.slider("PTFE thickness b_PTFE [m]", 0.005, 0.015, 0.005, 0.001)
 
 st.sidebar.markdown("---")
-st.sidebar.markdown("Made by Shoaib - Tribology Calculator 🚀")
+st.sidebar.markdown("Polymer-steel contact temperature calculator 🚀")
 
 # -----------------------------
 # ΔT calculation function
@@ -104,6 +104,7 @@ st.markdown(
 **Mobile tip:** Open this page in your phone browser → Add to Home Screen → works like a real app 🚀
 """
 )
+
 
 
 
