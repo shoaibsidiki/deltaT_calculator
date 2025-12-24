@@ -6,12 +6,12 @@ import numpy as np
 # Page config
 # -----------------------------
 st.set_page_config(
-    page_title="ΔT Calculator - Sensitivity",
+    page_title="ΔTc Calculator",
     layout="centered",
     initial_sidebar_state="expanded"
 )
 
-st.title("ΔT₍c₎ Calculator with Sensitivity Analysis")
+st.title("ΔT(C) Calculator")
 st.markdown("**All inputs must be in SI units**")
 
 st.divider()
@@ -64,7 +64,7 @@ r_d = st.number_input(
     format="%.4f",
     key="r_d"
 )
-b = st.slider(
+b = st.number_input(
     label="Steel disc thickness b [m]",
     min_value=0.001,
     max_value=0.05,
@@ -167,6 +167,7 @@ st.markdown(
 **Mobile tip:** Open this page in your phone browser → Add to Home Screen → works like a real app.
 """
 )
+
 
 
 
