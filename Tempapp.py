@@ -6,12 +6,12 @@ import numpy as np
 # Page config
 # -----------------------------
 st.set_page_config(
-    page_title="🔥 ΔTc Calculator",
+    page_title="🔥 Contact temperature rise calculator",
     layout="wide",
     initial_sidebar_state="expanded"
 )
 
-st.markdown("<h1 style='text-align: center; color: darkblue;'>🔥 ΔT₍c₎ Calculator</h1>", unsafe_allow_html=True)
+st.markdown("<h1 style='text-align: center; color: darkblue;'>🔥 ΔTc Calculator</h1>", unsafe_allow_html=True)
 st.markdown(
     "<p style='text-align: center;'>Calculate contact temperature rise based on friction, force, velocity and geometry.</p>", 
     unsafe_allow_html=True
@@ -104,6 +104,7 @@ st.markdown(
 **Mobile tip:** Open this page in your phone browser → Add to Home Screen → works like a real app 🚀
 """
 )
+
 
 
 
