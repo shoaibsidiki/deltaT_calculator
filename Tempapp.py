@@ -10,7 +10,7 @@ st.set_page_config(
     layout="wide"
 )
 
-st.title("ΔT₍c₎ Calculator")
+st.title("ΔTc Calculator")
 st.markdown("This app calculates the contact temperature rise (ΔT) based on your input parameters.")
 
 # -----------------------------
@@ -101,6 +101,7 @@ st.markdown(
 **Mobile tip:** Open this page in your phone browser → Add to Home Screen → works like a real app.
 """
 )
+
 
 
 
