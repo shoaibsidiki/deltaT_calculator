@@ -46,8 +46,8 @@ v = st.number_input(
     key="v"
 )
 
-r = st.slider(
-    label="Radius r [m]",
+r = st.number_input(
+    label="Sliding radius r [m]",
     min_value=0.001,
     max_value=0.1,
     value=0.01,
@@ -55,8 +55,8 @@ r = st.slider(
     format="%.4f",
     key="r"
 )
-r_d = st.slider(
-    label="Counterface radius r_d [m]",
+r_d = st.number_input(
+    label="Steel disc radius r_d [m]",
     min_value=0.001,
     max_value=0.1,
     value=0.01,
@@ -65,7 +65,7 @@ r_d = st.slider(
     key="r_d"
 )
 b = st.slider(
-    label="Contact width b [m]",
+    label="Steel disc thickness b [m]",
     min_value=0.001,
     max_value=0.05,
     value=0.005,
@@ -73,7 +73,7 @@ b = st.slider(
     format="%.4f",
     key="b"
 )
-b_PTFE = st.slider(
+b_PTFE = st.number_input(
     label="PTFE thickness b_PTFE [m]",
     min_value=0.0005,
     max_value=0.01,
@@ -167,6 +167,7 @@ st.markdown(
 **Mobile tip:** Open this page in your phone browser → Add to Home Screen → works like a real app.
 """
 )
+
 
 
 
