@@ -23,14 +23,14 @@ mu = st.sidebar.number_input(
     "Friction coefficient μ [-]", 
     value=0.1, 
     step=0.01, 
-    format="%.3f",
+    format="%.2f",
     help="Coefficient of friction"
 )
 Fn = st.sidebar.number_input(
     "Normal force Fₙ [N]", 
     value=100.0, 
     step=1.0, 
-    format="%.3f",
+    format="%.1f",
     help="Normal force applied"
 )
 
@@ -41,7 +41,7 @@ v = st.sidebar.number_input(
     max_value=1.0, 
     value=0.25, 
     step=0.01, 
-    format="%.3f"
+    format="%.2f"
 )
 r = st.sidebar.number_input(
     "Sliding radius r [m]", 
@@ -133,6 +133,7 @@ st.markdown(
 **Mobile tip:** Open this page in your phone browser → Add to Home Screen → works like a real app 🚀
 """
 )
+
 
 
 
