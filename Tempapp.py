@@ -94,7 +94,7 @@ def calc_delta_Tc(mu, Fn, v, r, r_d, b, b_PTFE):
 # -----------------------------
 # Compute main ΔT
 # -----------------------------
-if st.button("Calculate ΔT₍c₎", key="calculate_button"):
+if st.button("Calculate ΔTc", key="calculate_button"):
     # Validate inputs
     if 0 in [Fn, v, r, r_d, b, b_PTFE]:
         st.error("All input values must be greater than zero.")
@@ -167,6 +167,7 @@ st.markdown(
 **Mobile tip:** Open this page in your phone browser → Add to Home Screen → works like a real app.
 """
 )
+
 
 
 
